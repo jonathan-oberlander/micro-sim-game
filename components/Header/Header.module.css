@@ -1,0 +1,22 @@
+.bar {
+  width: 400px;
+  height: 3px;
+  margin: 0 auto 5px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.counter {
+  border: 1px solid lightgray;
+  width: 400px;
+  height: 40px;
+  padding: 5px;
+  margin: 20px auto 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+}
