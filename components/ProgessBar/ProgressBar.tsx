@@ -3,7 +3,7 @@ import { withCondition } from "../withCondition/withCondition";
 interface IPBProps {
   t: number;
 }
-export const ProgressBar: React.FC<IPBProps> = withCondition(({ t }) => (
+export const ProgressBar: React.FC<IPBProps> = ({ t }) => (
   <svg>
     <line
       x1="0"
@@ -16,4 +16,4 @@ export const ProgressBar: React.FC<IPBProps> = withCondition(({ t }) => (
       }}
     />
   </svg>
-));
+);
