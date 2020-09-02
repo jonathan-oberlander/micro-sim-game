@@ -1,0 +1,7 @@
+.bar {
+  width: 400px;
+  margin: 0 auto 4px auto;
+  display: flex;
+  stroke: rgb(92, 92, 92);
+  stroke-width: 3;
+}

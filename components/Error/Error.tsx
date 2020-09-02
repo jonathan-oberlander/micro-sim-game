@@ -1,4 +1,4 @@
-import { withCondition } from "../withCondition/withCondition";
+import { withCondition } from "../hocs/withCondition";
 
 export const Error = withCondition(({ children }) => (
   <>

@@ -1,3 +1,3 @@
-import { withCondition } from "../withCondition/withCondition";
+import { withCondition } from "../hocs/withCondition";
 
 export const Loader = withCondition(() => <div>Loading...</div>);

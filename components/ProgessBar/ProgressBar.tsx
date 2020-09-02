@@ -1,19 +1,16 @@
-import { withCondition } from "../withCondition/withCondition";
+import styles from "./ProgressBar.module.css";
 
 interface IPBProps {
   t: number;
 }
 export const ProgressBar: React.FC<IPBProps> = ({ t }) => (
-  <svg>
-    <line
-      x1="0"
-      y1="0"
-      x2={`${t * 3.3}`}
-      y2="0"
-      style={{
-        stroke: "rgb(120,20,0)",
-        strokeWidth: 3,
-      }}
-    />
-  </svg>
+  <div className={styles.bar}>
+    <svg width="400px" height="4px">
+      <path
+        d={`M0,0 H400,0`}
+        strokeDasharray={`${t * 4.44445} 800`}
+        style={{ transition: "all 150ms" }}
+      />
+    </svg>
+  </div>
 );
