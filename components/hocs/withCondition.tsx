@@ -1,8 +1,8 @@
-interface IHOCProps {
+interface IDC {
   display: boolean;
 }
-export const withCondition = <T extends object>(
-  Cmp: React.ComponentType<T>
-) => (props: T & IHOCProps) => (
-  <>{props.display && <Cmp {...(props as T)} />}</>
+export const withDisplayCondition = <T extends object>(
+  Component: React.FC<T>
+) => ({ display, ...props }: T & IDC) => (
+  <>{display && <Component {...(props as T & IDC)} />}</>
 );

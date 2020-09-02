@@ -1,7 +1,18 @@
 .bar {
   width: 400px;
-  margin: 0 auto 4px auto;
+  margin: 0 auto;
   display: flex;
-  stroke: rgb(92, 92, 92);
-  stroke-width: 3;
+}
+
+.bar svg {
+  width: 100%;
+  height: 8px;
+}
+
+.pSlow {
+  transition: all 200ms;
+}
+
+.pNone {
+  transition: none;
 }

@@ -1,8 +1,14 @@
-import { withCondition } from "../hocs/withCondition";
+import { withDisplayCondition } from "../hocs/withCondition";
 
-export const Error = withCondition(({ children }) => (
+interface IProps {
+  cool: true;
+  children: React.ReactNode;
+}
+export const Error: React.FC<IProps> = ({ children, cool }) => (
   <>
     Error...
-    <div>{children}</div>
+    <p>{children}</p>
   </>
-));
+);
+
+export const ConditionalError = withDisplayCondition(Error);

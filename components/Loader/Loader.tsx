@@ -1,3 +1,5 @@
-import { withCondition } from "../hocs/withCondition";
+import { withDisplayCondition } from "../hocs/withCondition";
 
-export const Loader = withCondition(() => <div>Loading...</div>);
+const Loader: React.FC = () => <div>Loading...</div>;
+
+export const ConditionalLoader = withDisplayCondition(Loader);

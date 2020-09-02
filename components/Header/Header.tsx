@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <div className={styles.counter}>{!state?.loading && timer?.display}</div>
-      <ProgressBar t={timer?.clock as number} />
+      <ProgressBar t={(timer?.clock * 1.1112) as number} />
     </>
   );
 };

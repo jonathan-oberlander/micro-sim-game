@@ -5,11 +5,27 @@ interface IPBProps {
 }
 export const ProgressBar: React.FC<IPBProps> = ({ t }) => (
   <div className={styles.bar}>
-    <svg width="400px" height="4px">
-      <path
-        d={`M0,0 H400,0`}
-        strokeDasharray={`${t * 4.44445} 800`}
-        style={{ transition: "all 150ms" }}
+    <svg>
+      <defs>
+        <linearGradient
+          id="gradient"
+          x1="0"
+          x2="60%"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="rotate(1)"
+        >
+          <stop stopColor="grey" offset="5%" />
+          <stop stopColor="black" offset="95%" />
+        </linearGradient>
+      </defs>
+      <line
+        className={t === 0 ? styles.pNone : styles.pSlow}
+        x1="0"
+        x2="100%"
+        strokeLinecap="round"
+        strokeWidth="4"
+        strokeDasharray={`${t * 1.4445}% 200%`}
+        stroke="url(#gradient)"
       />
     </svg>
   </div>
