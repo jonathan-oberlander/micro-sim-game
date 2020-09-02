@@ -1,10 +1,11 @@
 import styles from "./ProgressBar.module.css";
+const { pNone, pSlow, bar } = styles;
 
 interface IPBProps {
   t: number;
 }
 export const ProgressBar: React.FC<IPBProps> = ({ t }) => (
-  <div className={styles.bar}>
+  <div className={bar}>
     <svg>
       <defs>
         <linearGradient
@@ -19,12 +20,12 @@ export const ProgressBar: React.FC<IPBProps> = ({ t }) => (
         </linearGradient>
       </defs>
       <line
-        className={t === 0 ? styles.pNone : styles.pSlow}
+        className={t === 0 ? pNone : pSlow}
         x1="0"
         x2="100%"
         strokeLinecap="round"
         strokeWidth="4"
-        strokeDasharray={`${t * 1.4445}% 200%`}
+        strokeDasharray={`${t * 1.566}% 200%`}
         stroke="url(#gradient)"
       />
     </svg>
