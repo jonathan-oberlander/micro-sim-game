@@ -1,6 +1,7 @@
 import React from "react";
 import { useObservable } from "../../hooks/useObservable";
-import { flow$, state$ } from "../../state/state";
+import { state$ } from "../../state/state";
+import { flow$ } from "../../state/timeline";
 import { ProgressBar } from "../ProgessBar/ProgressBar";
 import styles from "./Header.module.css";
 

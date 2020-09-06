@@ -1,32 +1,30 @@
-import { IData } from "../../api/gameData";
-import { apiCall } from "../../api/mockApi";
-import { useObservable } from "../../hooks/useObservable";
-import { reducers, go$, apiData$, state$ } from "../../state/state";
+import { useSubject } from "../../hooks/useObservable";
+import { v$ } from "../../state/timeline";
 import styles from "./Footer.module.css";
 
-//////////////////////// P ////////////////////////
-
-export const doit = async () => {
-  reducers.reset();
-  go$.next(false);
-  try {
-    const data = await apiCall();
-    reducers.success();
-    apiData$.next(data as IData);
-    go$.next(true);
-  } catch (err) {
-    reducers.error(err);
-    go$.next(false);
-    apiData$.next({} as IData);
-  }
-};
-
 export const Footer: React.FC = () => {
-  const go = useObservable(go$);
+  const v = useSubject(v$);
 
   return (
-    <div onClick={() => doit()} className={styles.footer}>
-      {go ? "PLAY AGAIN" : "PLAY"}
+    <div onClick={() => v.set(true)} className={styles.footer}>
+      {v.get ? "PLAY AGAIN" : "PLAY"}
     </div>
   );
 };
+
+//////////////////////// P ////////////////////////
+
+// export const doit = async () => {
+//   reducers.reset();
+//   go$.next(false);
+//   try {
+//     const data = await apiCall();
+//     reducers.success();
+//     apiData$.next(data as IData);
+//     go$.next(true);
+//   } catch (err) {
+//     reducers.error(err);
+//     go$.next(false);
+//     apiData$.next({} as IData);
+//   }
+// };

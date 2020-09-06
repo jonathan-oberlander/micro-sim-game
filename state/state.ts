@@ -1,9 +1,12 @@
-import { BehaviorSubject, from } from "rxjs";
-import { switchMap } from "rxjs/operators";
+import { BehaviorSubject, from, fromEvent } from "rxjs";
 import { IData } from "../api/gameData";
-import { timeline$, timelineInit } from "./timeline";
 
-//////////////////////// STATE ////////////////////////
+//////////////////////// BEHAVIOR SUBJECTS ////////////////////////
+
+export const counter$ = new BehaviorSubject<number>(0);
+export const apiData$ = new BehaviorSubject<IData>({} as IData);
+
+//////////////////////// GLOBAL STATE ////////////////////////
 
 const initialState = {
   error: "",
@@ -13,19 +16,13 @@ const initialState = {
 type TState = typeof initialState;
 
 export const state$ = new BehaviorSubject<Partial<TState>>(initialState);
-export const go$ = new BehaviorSubject<boolean>(false);
-export const flow$ = go$.pipe(
-  switchMap((x) => (x ? timeline$ : from([timelineInit])))
-);
-export const apiData$ = new BehaviorSubject<IData>({} as IData);
-
 let state = initialState;
 const nextState = (newState: TState) => {
   state = newState;
   state$.next(state);
 };
 
-//////////////////////// REDUCERS ////////////////////////
+//////////////////////// STATE REDUCERS ////////////////////////
 
 const reset = () =>
   nextState({
@@ -45,7 +42,7 @@ const success = () =>
     loading: false,
   });
 
-export const reducers = {
+export const stateFunctions = {
   reset,
   error,
   success,

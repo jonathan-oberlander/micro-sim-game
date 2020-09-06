@@ -9,6 +9,8 @@ import styles from "./Body.module.css";
 export const Body: React.FC = () => {
   const apiData = useObservable(apiData$);
   const state = useObservable(state$);
+  // console.log(apiData);
+  // console.log(state);
 
   return (
     <div className={styles.body}>

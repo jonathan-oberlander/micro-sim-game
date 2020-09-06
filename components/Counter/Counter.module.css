@@ -1,0 +1,17 @@
+.ctn {
+  border: 1px solid lightgray;
+  width: 400px;
+  height: 40px;
+  padding: 5px;
+  margin: 20px auto 5px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+.ctn > button {
+  width: 30%;
+  background-color: white;
+  border: 1px solid lightgray;
+}

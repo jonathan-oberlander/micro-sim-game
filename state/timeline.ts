@@ -1,5 +1,16 @@
-import { timer, scheduled, queueScheduler } from "rxjs";
-import { take, map, concatAll, scan } from "rxjs/operators";
+import { timer, scheduled, queueScheduler, from, BehaviorSubject } from "rxjs";
+import {
+  take,
+  map,
+  concatAll,
+  scan,
+  switchMap,
+  catchError,
+} from "rxjs/operators";
+import { ajax, AjaxResponse } from "rxjs/ajax";
+import { apiData$, state$, stateFunctions } from "./state";
+import { gameData, IData } from "../api/gameData";
+import { stat } from "fs";
 
 export interface ITimeLine {
   clock: number;
@@ -37,4 +48,43 @@ export const timeline$ = scheduled(
 ).pipe(
   concatAll(),
   scan((acc, curr) => Object.assign({}, acc, curr), timelineInit)
+);
+
+///// API CALL
+
+const apiStream$ = ajax("https://jsonplaceholder.typicode.com/todos/");
+
+export const v$ = new BehaviorSubject<boolean>(false);
+
+// try to remove game data
+export const call$ = v$.pipe(
+  map((v) => {
+    // stateFunctions.reset();
+    // apiData$.next({} as IData);
+    apiData$.next(gameData);
+    return v;
+  }),
+  switchMap((x) => (x ? apiStream$ : from([{} as AjaxResponse]))),
+
+  catchError((error) => {
+    stateFunctions.error(error);
+    return from([error]);
+  })
+);
+
+// CREATE THE WHOLE PROGRESS ON EVENTS HERE
+export const flow$ = call$.pipe(
+  // map((r) => {
+  //   console.log(r);
+  //   apiData$.next(gameData);
+  //   return r;
+  // }),
+  switchMap((r) => {
+    if (r.status === 200) {
+      stateFunctions.success();
+      return timeline$;
+    } else {
+      return from([timelineInit]);
+    }
+  })
 );
