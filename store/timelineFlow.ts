@@ -1,15 +1,7 @@
-import { timer, scheduled, queueScheduler, from, BehaviorSubject } from "rxjs";
-import {
-  take,
-  map,
-  concatAll,
-  scan,
-  switchMap,
-  catchError,
-} from "rxjs/operators";
+import { timer, scheduled, queueScheduler, from } from "rxjs";
+import { take, map, concatAll, scan, switchMap } from "rxjs/operators";
 import { AjaxResponse } from "rxjs/ajax";
-import { apiState$, playGame$, stateFunctions } from "./applicationState";
-import { gameData } from "../api/gameData";
+import { playGame$, stateFunctions } from "./applicationState";
 import { apiCall$ } from "../api/api";
 
 export interface ITimeLine {

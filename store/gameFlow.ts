@@ -51,7 +51,7 @@ export const events$ = (game: IGame) =>
     distinct()
   );
 
-export const gameData$ = (g: IGame) =>
+export const gameFlow$ = (g: IGame) =>
   scheduled([goalOnTime$(g), events$(g)], queueScheduler).pipe(
     mergeAll(),
     scan((acc, curr) => Object.assign({}, acc, curr), initGameData)
