@@ -1,6 +1,6 @@
 import { IGame } from "../../api/gameData";
 import { useObservable } from "../../hooks/useObservable";
-import { gameData$ } from "../../state/gameState";
+import { gameData$ } from "../../store/gameFlow";
 import styles from "./Item.module.css";
 
 export const Item: React.FC<{ g: IGame }> = ({ g }) => {

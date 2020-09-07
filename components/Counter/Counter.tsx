@@ -1,9 +1,9 @@
 import { useSubject } from "../../hooks/useObservable";
-import { counter$ } from "../../state/state";
+import { counterState$ } from "../../store/applicationState";
 import styles from "./Counter.module.css";
 
 export const Counter = () => {
-  const count = useSubject(counter$);
+  const count = useSubject(counterState$);
   return (
     <div className={styles.ctn}>
       <button onClick={() => count.set(count.get - 2)}>-</button>

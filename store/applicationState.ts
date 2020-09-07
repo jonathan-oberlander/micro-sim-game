@@ -1,28 +1,29 @@
 import { BehaviorSubject, from, fromEvent } from "rxjs";
 import { IData } from "../api/gameData";
 
-//////////////////////// BEHAVIOR SUBJECTS ////////////////////////
+//////////////////////// ATOMIC STATES ////////////////////////
 
-export const counter$ = new BehaviorSubject<number>(0);
-export const apiData$ = new BehaviorSubject<IData>({} as IData);
+export const apiState$ = new BehaviorSubject<IData>({} as IData);
+export const playGame$ = new BehaviorSubject<boolean>(false);
+export const counterState$ = new BehaviorSubject<number>(0);
 
-//////////////////////// GLOBAL STATE ////////////////////////
+//////////////////////// GLOBAL STATE 1 ////////////////////////
 
+type TState = typeof initialState;
 const initialState = {
   error: "",
   loading: true,
 };
 
-type TState = typeof initialState;
+export const globalState1$ = new BehaviorSubject<Partial<TState>>(initialState);
 
-export const state$ = new BehaviorSubject<Partial<TState>>(initialState);
 let state = initialState;
 const nextState = (newState: TState) => {
   state = newState;
-  state$.next(state);
+  globalState1$.next(state);
 };
 
-//////////////////////// STATE REDUCERS ////////////////////////
+// UPDATE STATE FUNCTIONS
 
 const reset = () =>
   nextState({

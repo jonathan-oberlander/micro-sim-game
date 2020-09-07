@@ -1,13 +1,13 @@
 import React from "react";
 import { useObservable } from "../../hooks/useObservable";
-import { state$ } from "../../state/state";
-import { flow$ } from "../../state/timeline";
+import { globalState1$ } from "../../store/applicationState";
+import { flow$ } from "../../store/timelineFlow";
 import { ProgressBar } from "../ProgessBar/ProgressBar";
 import styles from "./Header.module.css";
 
 export const Header: React.FC = () => {
   const timer = useObservable(flow$);
-  const state = useObservable(state$);
+  const state = useObservable(globalState1$);
 
   return (
     <>

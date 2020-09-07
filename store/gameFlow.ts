@@ -1,7 +1,7 @@
 import { from, queueScheduler, scheduled } from "rxjs";
 import { mergeMap, map, mergeAll, scan, distinct } from "rxjs/operators";
 import { IGame } from "../api/gameData";
-import { flow$ } from "./timeline";
+import { flow$ } from "./timelineFlow";
 
 const initGameData = {
   score: "0-0",

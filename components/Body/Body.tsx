@@ -1,16 +1,14 @@
 import React from "react";
 import { useObservable } from "../../hooks/useObservable";
-import { apiData$, state$ } from "../../state/state";
+import { apiState$, globalState1$ } from "../../store/applicationState";
 import { Item } from "../Item/Item";
 import { ConditionalLoader } from "../Loader/Loader";
 import { ConditionalError } from "../Error/Error";
 import styles from "./Body.module.css";
 
 export const Body: React.FC = () => {
-  const apiData = useObservable(apiData$);
-  const state = useObservable(state$);
-  // console.log(apiData);
-  // console.log(state);
+  const apiData = useObservable(apiState$);
+  const state = useObservable(globalState1$);
 
   return (
     <div className={styles.body}>
